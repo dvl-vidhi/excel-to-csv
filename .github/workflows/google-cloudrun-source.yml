@@ -24,13 +24,13 @@ jobs:
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
       - name: Deploy to Cloud Run
         env:
-          SERVICE: converter
+          SERVICE: excel-to-csv-converter
           REGION: us-central1
         id: deploy
         uses: google-github-actions/deploy-cloudrun@v0
         with:
           service: '${{ env.SERVICE }}'
           region: '${{ env.REGION }}'
-          source: .\backend\exel-csv-converter
+          source: ./backend/exel-csv-converter
       - name: Show Output
         run: 'echo ${{ steps.deploy.outputs.url }}'
